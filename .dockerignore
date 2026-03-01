@@ -1,0 +1,14 @@
+# Don't send these to Docker build context
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+backend/.env
+frontend/node_modules/
+voice-agent/node_modules/
+voice-agent/
+.git/
+.gitignore
+*.md
+build_output.txt
