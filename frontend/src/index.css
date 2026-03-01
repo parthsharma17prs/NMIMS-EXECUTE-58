@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital@1&family=IBM+Plex+Mono:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+
+/* ══════════════════════════════════════════════════════════════
+   Landing Page — scoped under .landing-root
+   ══════════════════════════════════════════════════════════════ */
+:root {
+  --void: #030804;
+  --abyss: #060e08;
+  --forest: #0a1a0c;
+  --pulse: #00ff88;
+  --pdim: #00cc6e;
+  --pghost: #00ff8812;
+  --red: #ff4400;
+  --solar: #ffe14d;
+  --cyan: #00eeff;
+  --ash: #1e2e21;
+  --fog: #4d6652;
+  --paper: #c8deca;
+  --lp-white: #f0f4f1;
+  --display: 'Bebas Neue', sans-serif;
+  --serif: 'Playfair Display', serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --data: 'DM Mono', monospace;
+}
+
+.landing-root {
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.landing-root a { color: inherit; text-decoration: none; }
+.landing-root ul { list-style: none; }
+.landing-root button { border: none; background: none; font-family: var(--mono); cursor: pointer; }
+.landing-root input { outline: none; font-family: var(--mono); }
+
+.landing-root .char { display: inline-block; will-change: transform, opacity; }
+.landing-root .word { display: inline-block; overflow: hidden; }
+
+.landing-root section { position: relative; z-index: 1; }
+
+.landing-root .sec-rule {
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: var(--ash);
+}
+.landing-root .sec-num {
+  position: absolute; bottom: -10px; left: 40px;
+  font-family: var(--display); font-size: clamp(120px,14vw,200px);
+  color: rgba(0,255,136,0.035); line-height: 1;
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.landing-root .sec-cat {
+  position: absolute; top: 50%; left: -28px;
+  font-family: var(--mono); font-size: 10px; color: var(--fog);
+  letter-spacing: .2em; text-transform: uppercase; white-space: nowrap;
+  transform: rotate(-90deg) translateX(-50%); transform-origin: left center;
+  pointer-events: none;
+}
+.landing-root .chip {
+  display: inline-block; border: 1px solid var(--ash);
+  font-family: var(--mono); font-size: 10px; letter-spacing: .05em;
+  color: var(--fog); padding: 4px 10px;
+}
+
+/* ══════════════════════════════════════════════════════════════ */
+
+/* ── Base Resets ─────────────────────────────────────────────── */
+html {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-black text-slate-200 font-sans antialiased;
+  margin: 0;
+  background-color: #000000;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(56,189,248,0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.02) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ── Reusable Glass Card ─────────────────────────────────────── */
+@layer components {
+  .glass-card {
+    @apply relative overflow-hidden rounded-2xl border border-white/[0.06] shadow-card;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[1px];
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  }
+
+  .glass-card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+  .glass-card-hover:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,0.1);
+  }
+
+  /* Gradient top accent bar variants */
+  .accent-bar-emerald::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #34d399, #059669);
+  }
+  .accent-bar-sky::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #38bdf8, #0284c7);
+  }
+  .accent-bar-violet::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #8b5cf6, #6d28d9);
+  }
+  .accent-bar-amber::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #fbbf24, #d97706);
+  }
+  .accent-bar-coral::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #ff6b6b, #ef4444);
+  }
+  .accent-bar-cyan::after {
+    content: '';
+    @apply absolute inset-x-0 top-0 h-[2px];
+    background: linear-gradient(90deg, #22d3ee, #06b6d4);
+  }
+
+  /* Chart glow container */
+  .chart-glow {
+    @apply relative;
+    filter: drop-shadow(0 0 20px rgba(56,189,248,0.06));
+  }
+
+  /* Stagger animation delays */
+  .stagger-1 { animation-delay: 0ms; }
+  .stagger-2 { animation-delay: 75ms; }
+  .stagger-3 { animation-delay: 150ms; }
+  .stagger-4 { animation-delay: 225ms; }
+  .stagger-5 { animation-delay: 300ms; }
+  .stagger-6 { animation-delay: 375ms; }
+
+  /* Shimmer gradient for loading / in-progress states */
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      transparent 25%,
+      rgba(255,255,255,0.04) 50%,
+      transparent 75%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  /* Left accent border for cards */
+  .left-accent-emerald { border-left: 2px solid #34d399; }
+  .left-accent-sky     { border-left: 2px solid #38bdf8; }
+  .left-accent-violet  { border-left: 2px solid #8b5cf6; }
+  .left-accent-amber   { border-left: 2px solid #fbbf24; }
+  .left-accent-coral   { border-left: 2px solid #ff6b6b; }
+  .left-accent-cyan    { border-left: 2px solid #22d3ee; }
+}
+
+/* ── Custom Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full;
+  background: linear-gradient(180deg, #1c2a4a, #263d65);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #263d65, #355580);
+}
+
+/* ── Page transition wrapper ─────────────────────────────────── */
+.page-enter {
+  animation: fadeInUp 0.45s ease-out both;
+}
+
+/* ── SVG Gauge glow filter ───────────────────────────────────── */
+.gauge-glow {
+  filter: drop-shadow(0 0 8px var(--gauge-color, rgba(52,211,153,0.4)));
+}
+
+/* ── Smooth number transitions ───────────────────────────────── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

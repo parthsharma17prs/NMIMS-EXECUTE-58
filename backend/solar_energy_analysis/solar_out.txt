@@ -1,0 +1,2 @@
+﻿{"cloud_cover_pct":7.0,"irradiance_wm2":0.0,"is_nighttime":true,"local_hour":1,"location":{"lat":22.9252,"lon":75.8655,"name":"NMIMS Indore"},"solar_kw":0.0,"system":{"capacity_kw":100,"clear_sky_ghi":1000,"gamma":0.004,"pr":0.75},"t_cell_c":21.9,"temperature_c":16.9}
+
